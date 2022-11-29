@@ -1,42 +1,67 @@
-from collections import Counter
-
 with open('input2.txt') as f:
     data = f.readlines()
     outputs = [x.strip().split('|')[1].split(' ')[1:] for x in data]
     displays = [x.strip().split('|')[0].split(' ')[:-1] for x in data]
 
-full_set = {'a','b','c','d','e','f','g'}
+def infer_5(display, o):
+    for s in display:
+        if len(s) == 2: um = s
+        if len(s) == 4: quatro = s
 
-UR = {'a','b','c','d','e','f','g'},
-UP = {'a','b','c','d','e','f','g'},
-UL = {'a','b','c','d','e','f','g'},
-MI = {'a','b','c','d','e','f','g'},
-DR = {'a','b','c','d','e','f','g'},
-DL = {'a','b','c','d','e','f','g'},
-DO = {'a','b','c','d','e','f','g'}
-
-segments = [UR,UP,UL,MI,DR,DL,DO]
-
-number_structure = {
-    0: [UP, UR, UL, DR, DL, DO],
-    1: [UR, DR],
-    2: [UP, UR, MI, DL, DO],
-    3: [UP, UR, MI, DR, DO],
-    4: [UL, UR, MI, DR],
-    5: [UP, UL, MI, DR, DO],
-    6: [UP, UL, MI, DR, DL, DO],
-    7: [UP, UR, DR],
-    8: [UP, UR, UL, MI, DR, DL, DO],
-    9: [UP, UR, UL, MI, DR, DO]
-}
+    if all([x in o for x in um]):
+        return '3'
+    elif len([x for x in o if x in quatro]) == 3:
+        return '5'
+    else:
+        return '2'
 
 
-def mark_known(segments, known):
-    for segment in segments:
-        if len(segment) > 1: segment -= known
+def infer_6(display, o):
+    for s in display:
+        if len(s) == 2: um = s
+        if len(s) == 4: quatro = s
+
+    if all([x in o for x in quatro]):
+        return '9'
+    elif any([x not in o for x in um]):
+        return '6'
+    else:
+        return '0'
+
+
+
+
+def infer_number(display, o):
+    if len(o) == 2: return '1'
+    if len(o) == 3: return '7'
+    if len(o) == 4: return '4'
+    if len(o) == 7: return '8'
+    if len(o) == 5: return infer_5(display, o)
+    if len(o) == 6: return infer_6(display, o)
+
+
+
 
 def infer_output(display, output):
-    for num in display:
-        if len(num) == 
+    out = ""
+    for o in output:
+        out += infer_number(display, o)
+    return int(out)
 
 
+
+def main(outputs, displays):
+    ans = 0
+    for disp, out in zip(displays, outputs, strict=True):
+        ans += infer_output(disp, out)
+    return ans
+
+
+if __name__=="__main__":
+
+    with open('input2.txt') as f:
+        data = f.readlines()
+        outputs = [x.strip().split('|')[1].split(' ')[1:] for x in data]
+        displays = [x.strip().split('|')[0].split(' ')[:-1] for x in data]
+
+    print(main(outputs, displays))

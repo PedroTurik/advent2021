@@ -1,5 +1,5 @@
 #read lines from input2.txt, split them on " ", and append this list to a list called lines
-with open("input2.txt") as f:
+with open("input1.txt") as f:
     lines = [line.split(" ") for line in f]
 
 aim = 0

@@ -3,7 +3,7 @@ matrix = [[0 for _ in range(1000)] for _ in range(1000)]
 
 def read():
     clouds=[]
-    for x in open('input2.txt', 'r').readlines():
+    for x in open('input1.txt', 'r').readlines():
         points = x.split(" -> ")
         x1,y1 = points[0].split(',')
         x2,y2 = points[1].split(',')

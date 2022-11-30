@@ -23,7 +23,7 @@ def pontuation(board, draw):
 
 
 
-with open('input2.txt') as f:
+with open('input1.txt') as f:
     draws = [int(x) for x in f.readline().split(',')]
     _ = f.readline()
     raw_boards = f.readlines()

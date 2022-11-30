@@ -1,8 +1,3 @@
-with open('input2.txt') as f:
-    data = f.readlines()
-    outputs = [x.strip().split('|')[1].split(' ')[1:] for x in data]
-    displays = [x.strip().split('|')[0].split(' ')[:-1] for x in data]
-
 def infer_5(display, o):
     for s in display:
         if len(s) == 2: um = s
@@ -27,7 +22,6 @@ def infer_6(display, o):
         return '6'
     else:
         return '0'
-
 
 
 
@@ -59,7 +53,7 @@ def main(outputs, displays):
 
 if __name__=="__main__":
 
-    with open('input2.txt') as f:
+    with open('input1.txt') as f:
         data = f.readlines()
         outputs = [x.strip().split('|')[1].split(' ')[1:] for x in data]
         displays = [x.strip().split('|')[0].split(' ')[:-1] for x in data]

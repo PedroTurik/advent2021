@@ -15,6 +15,8 @@ def dive(dic, node, ban_set):
         global counter
         counter += 1
     elif node not in ban_set:
+        
+        
         if node[0].islower():
             ban_set.add(node)
 

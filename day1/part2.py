@@ -1,5 +1,5 @@
 #read lines from input2.txt, transform them into integers, and append them to a list
-with open("input2.txt") as f:
+with open("input1.txt") as f:
     lines = [int(line) for line in f]
 
 #count the number of times the sum of a sliding window of 3 numbers increases in comparison to the previous window

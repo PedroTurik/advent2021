@@ -10,25 +10,39 @@ with open('input1.txt') as f:
 
 counter = 0
 
-def dive(dic, node, ban_set, repeats):
-    if repeats > 1:
+def dive(dic, node, ban_set, repeats, first=False):
+    if node == 'start' and not first:
         return
-    if node == 'end' and repeats == 1:
-        global counter
-        counter += 1
+    if node == 'end':
+        if repeats == 1:
+            global counter
+            counter += 1
+        return
+
+    new_repeats = repeats
+
     if node in ban_set:
-        repeats += 1
+        new_repeats = repeats + 1
     else:
         if node[0].islower():
             ban_set.add(node)
+
+
+    if repeats > 1:
+        return
+
+
     cur = dic.get(node, False)
     if cur:
         for n in cur:
-            dive(deepcopy(dic), n, deepcopy(ban_set), repeats)
+            dive(dic, n, deepcopy(ban_set), new_repeats, False)
 
-dive(conections, 'start', set(), 0)
+dive(conections, 'start', set(), 0, first=True)
 
 print(counter + 4338)
+
+
+
 
 
 

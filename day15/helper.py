@@ -4,10 +4,10 @@ class Node:
         self.risk = risk
         self.manhatan = (target[0]-pos[0]) + (target[1]-pos[1])    
     def __lt__(self, other) -> bool:
-        return self.risk + (self.manhatan)*1.1 < other.risk + (other.manhatan)*1.1
+        return self.risk + (self.manhatan) < other.risk + (other.manhatan)
 
     def __gt__(self, other) -> bool:
-        return self.risk + (self.manhatan)*1.1 > other.risk + (other.manhatan)*1.1
+        return self.risk + (self.manhatan) > other.risk + (other.manhatan)
     
     def __repr__(self) -> str:
         return f"{self.pos},  {self.risk}"

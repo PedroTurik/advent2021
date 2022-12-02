@@ -31,9 +31,9 @@ def add_letter(pair, depth):
         tmp[k] += v
     
     return tmp
-
+steps = int(input("enter number of steps "))
 for i in range(2, len(start)):
-    for k, v in add_letter(start[i-2:i], int(input("enter number of steps"))).items():
+    for k, v in add_letter(start[i-2:i], steps).items():
         apperances[k] += v
 
 print(max(apperances.values()) - min(apperances.values()))

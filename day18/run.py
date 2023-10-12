@@ -1,13 +1,17 @@
-with open("input.txt") as f:
-    snails = [eval(row.strip()) for row in f]
+from snail_functions import *
 
 
-def calculate_magnitude(snail):
-    if type(snail) == int:
-        return snail
+def main():
+    with open("input.txt") as f:
+        snails = [eval(row.strip()) for row in f]
 
-    return 3*calculate_magnitude(snail[0]) + 2*calculate_magnitude(snail[1])
+    acc = snails[LEFT]
+    for s in snails[1:]:
+        acc = add_snail(acc, s)
+        reduce(acc)
+
+    print(calculate_magnitude(acc))
 
 
-
-
+if __name__ == "__main__":
+    main()
